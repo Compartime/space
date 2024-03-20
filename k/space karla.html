@@ -1,0 +1,258 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Karla | xatspace</title>
+<LINK REL="SHORTCUT ICON" href="//xat.com/web_gear/chat/icon.ico">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+body {
+	/*padding:0px;
+	margin: 0px 0px 0px 0px;*/
+	FONT-SIZE: 12pt;
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+}
+div#xatstyme {
+	background:#0;
+	color: #00; 
+	overflow: auto;
+}
+body {background:url(http://u.cubeupload.com/lizett/glbp6m.gif) repeat,#000000}{background:repeating-linear-gradient(0deg, rgba(0,0,0,.2) 1px, transparent 2px, transparent 6px),          repeating-linear-gradient(90deg, rgba(0,0,0,.2) 1px, transparent 2px, transparent 1px),         radial-gradient(#000000, #222); }*{cursor:url(https://xatimg.com/image/5iwZxZVl6Iix.jpg),auto}/*-*/ *{     margin:0;     padding:0;     box-sizing:border-box;     -webkit-user-select:none;     user-select:none; } :before,  :after{     content:'';     position:absolute; } :root{     --font-1: 'Archivo Black', sans-serif;     --font-2: 'Teko', sans-serif;     --font-3: 'Orbitron', sans-serif;     --font-4: 'Rancho', cursive;     --font-5: 'VT323', monospace;     --bg: repeating-linear-gradient(0deg, rgba(255,255,255,.2) 1px, transparent 2px, transparent 5px),         repeating-linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 2px, transparent 5px),          linear-gradient(#ff001e, #a40517);     --bg-hover: repeating-linear-gradient(0deg, rgba(255,255,255,.2) 1px, transparent 2px, transparent 5px),         repeating-linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 2px, transparent 5px),          linear-gradient(#ce0017 , #ff0000 );     --height: 480px;     --pages: 4; } a{     text-transform:uppercase;     text-decoration:none;     display:inline-block;     text-align:center; } span{     display:inline-block; } h2, h3, h4{     font-weight:50; } #main{     width:100%;     height:100vh;     position:relative;     font-family:var(--font-2);     font-size:1em;     color:#ff0000;     overflow:hidden; } .container{     width:1185px;     height:100vh;     position:relative;     margin:0 auto; } .menu{     width:160px;     height:180px;     position:absolute;     left:-100px;     top:50%;     transform:translateY(-50%);     background:#000;     padding:1px;     display:flex;     flex-direction:column;     justify-content:space-between;     animation:mover 1s ease-out;     animation-fill-mode:forwards;     opacity:0;     z-index:50; } .btn-menu{     width:100%;     height:40px;     line-height:40px;     background:var(--bg);     box-shadow:0 0 0 4px rgba(133, 3, 18) inset, 0 0 1px rgba(0,0,0,.3);     color:#fff;     transition:all .3s linear;     position:relative;     left:0; } .btn-menu:before{     width:20px;     height:10px;     background:#ff0000;     top:calc(50% - 5px);     right:-5px;     z-index:-1; } .btn-menu:after{     width:0;     height:0;     border-left:solid 10px #ff0000;     border-top:solid 10px transparent;     border-bottom:solid 10px transparent;     right:-15px;     top:calc(50% - 9px); } .btn-menu:hover{     animation:pulse  .3s ease-in-out;     background:var(--bg-hover);     color:#000; } .btn-menu:nth-of-type(1){     background:var(--bg-hover);     color:#000; } @keyframes pulse{     50%{         left:25px;     } } .main-content{     width:735px;     height:490px;     position:absolute;     top:50%;     left:50%;     transform:translate(-50%, -250%);     background:repeating-linear-gradient(45deg, rgba(0,0,0,.1) 1px, transparent 3px, transparent 4px), #ff0000;     box-shadow:0 0 0 5px rgba(0,0,0,.8) inset, 0 0 30px 10px rgba(0,0,0,.2);     animation:down 3s ease-out;     animation-fill-mode:forwards; } @keyframes mover{     100%{         left:60px;         opacity:1;     } } @keyframes down{     100%{         transform:translate(-50%, -50%);     } } .header{     position:absolute;     height:85px;     top:-45px;     z-index:40; } .title{     font-family:var(--font-1);     font-size:1em;     line-height:1px;     color:#ff0000;     text-shadow:1px 1px 1px rgba(0,0,0,.4); } .sub-title{     width:180px;     height:38px;     background:#222;     box-shadow:0 0 0 4px rgba(02,0,0,.8) inset;     margin-top:5px;     color:#ff0000;     line-height:40px;     font-size:1em;     padding-left:10px; } .main-page{     width:735px;     height:var(--height);     margin:5px;     position:relative;     overflow:hidden; } .pages{     width:100%;     height:var(--height);     position:absolute;     top:0; } .home, .friend, .video, .chat{     position:absolute;     width:99%;     height:var(--height);     top:-480px;     background:repeating-linear-gradient(45deg, rgba(0,0,0,.1) 1px, transparent 3px, transparent 4px), #000000;     transition:all .5s ease-out;     overflow:hidden; } .home{     background:#080808;     top:0; }  #content-1:target .home{     top:0;     transition-delay:.8s; } #content-1:target .friend, .video, .chat{     top:-480px; } #content-1:target .btn-menu:nth-of-type(1){     background:var(--bg-hover);     color:#000; }  #content-2:target .friend{     top:0;     transition-delay:.8s; } #content-2:target .home, .video, .chat{     top:-480px; } #content-2:target .btn-menu:nth-of-type(2){     background:var(--bg-hover);     color:#000; } #content-2:target .btn-menu:nth-of-type(1){     background:var(--bg);     color:#fff; } #content-2:target .btn-menu:nth-of-type(1):hover{     background:var(--bg-hover);     color:#000; }  #content-3:target .video{     top:0;     transition-delay:.8s; } #content-3:target .home, .friend, .chat{     top:-480px; } #content-3:target .btn-menu:nth-of-type(3){     background:var(--bg-hover);     color:#000; } #content-3:target .btn-menu:nth-of-type(1){     background:var(#000000);     color:#fff; } #content-3:target .btn-menu:nth-of-type(1):hover{     background:var(--bg-hover);     color:#000; }  #content-4:target .chat{     top:0;     transition-delay:.8s; } #content-4:target .home, .friend, .video{     top:-480px; } #content-4:target .btn-menu:nth-of-type(4){     background:var(--bg-hover);     color:#000; } #content-4:target .btn-menu:nth-of-type(1){     background:var(--bg);     color:#fff; } #content-4:target .btn-menu:nth-of-type(1):hover{     background:var(--bg-hover);     color:#000; }  .block{     width:628px;     height:419px;     margin-top:20px;     margin-left:calc(50% - 314px); } .home .block{     text-align:center;     color:#ff0000;     font-family:var(--font-4); } .home h2{     font-size:2em; } .desc{     font-size:0.8em;     margin-top:1px; } .friend .block{     display:flex;     justify-content:space-between; } .col-img{     width:350px;     height:400px;     position:relative;     margin:15px 25px;     box-shadow:0 0 0 1px #ff0000;     overflow:hidden; } .col-img img{     position:absolute;     height:450px;     width:320px;     left:100px;     transform:translateX(-100px); } .aside{     width:320px;     height:600px;     margin-top:5px; } .aside h2{     border-bottom:solid 1px #222; } .col-friend{     height:600px;     margin-top:10px;     overflow-y:auto; } .row-friend{     width:90%;     height:40px;     margin-bottom:10px;     padding-left:5px;     box-shadow:5px 0 #ff0000 inset;     display:flex; } .row-friend img{     width:34px;     height:40px;     margin:0 6px; } .infor{     width:calc(100% - 41px);     position:relative; } .infor span{     color:#ff0000; } .infor h4{     font-family:var(--font-1); } .me{     position:absolute;     width:70px;     line-height:29px;     height:26px;     background:#ff0000;     color:#000;     font-size:.8em;     border-radius:3px;     box-shadow:0 0 0 4px rgba(0,0,0,.2) inset;     bottom:0;     right:30px;     transition:all .3s ease-out; } .me:hover{     color:#fff;     box-shadow:0 0 0 13px rgba(0,0,0,0) inset; } .video .block, .chat .block{     display:flex;     justify-content:center;     align-items:center;     position:relative;     z-index:20; } .box-video{     width:850px;     height:339px;     background:#222;     box-shadow:0 3px #ff0000;     position:relative; } .box-video:before{     width:80%;     height:50px;     border-radius:50%;     background:#000;     filter:blur(20px);     left:10%;     bottom:-25px;     z-index:-1; } .box-chat{     width:850px;     height:350px;     background:#222;     box-shadow:0 0 0 5px #ff0000; } .footer{     width:100%;     text-align:center;     text-transform:uppercase;     position:absolute;     bottom:0;     z-index:-1; } ::-webkit-scrollbar{     width:1px;     background:#222; } ::-webkit-scrollbar-thumb{     background:#ff0000;}
+div#noowayfixed {
+	z-index: 2147483647;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+div#noowaymenu
+{
+	background-color:#009;
+	background: linear-gradient(#000014, #000024, #00004e);
+    border-radius: 0px 5px 0px 0px;
+	display: none;
+	FONT-SIZE: 12pt;
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+}
+div#noowayitems
+{
+	padding-top: 5px;
+    padding-right: 0px;
+    /*padding-bottom: 5px;*/
+    padding-left: 0px;
+    margin-left: 6px;
+    line-height: 130%;
+	color:#fff;
+}
+div#noowayitems > a
+{
+	color:#fff;
+    text-decoration: none;
+}
+div#noowayitems > a:hover {
+    text-decoration: underline;
+}
+</style>
+<div id="xatstyme">
+</style>
+<div id="NotAllowedme">
+</style> 
+<div id="NotAllowedme"> 
+<div id="main"> 
+ 
+ <div id="content-1"> 
+ 
+ <div id="content-2"> 
+ 
+ <div id="content-3"> 
+ 
+
+ 
+ <div class="container"> 
+ 
+ <div class="menu"> 
+ <a class="btn-menu" href="#content-1">𝐈𝐧𝐢𝐜𝐢𝐨</a> 
+ <a class="btn-menu" href="#content-2">𝘼𝙢𝙞𝙜𝙤𝙨</a> 
+ <a class="btn-menu" href="#content-3">𝙈𝙪𝙨𝙞𝙘𝙖</a> 
+
+ </div> 
+ 
+ <div class="main-content"> 
+ 
+ <div class="header"> 
+ 
+ <h1 class="title"></h1> 
+ 
+ <h1 class="sub-title">❤ NOMBRE ❤</h1></div> 
+ 
+ <div class="main-page"> 
+ 
+ <div class="pages"> 
+ 
+ <div class="home"> 
+ 
+ <div class="block"> 
+ 
+ <h3 class="welcome">🎵BIENVENIDOS🎵</h3> 
+ <img width="600" height="380" src="https://xatimg.com/image/L1CxNio1Eii5.gif" /> 
+ 
+ <p class="desc">  <h3 class="welcome">🎵Nadie Como Tu🎵</h3>
+</p> 
+<a href="http://info.flagcounter.com/UVyt"><img src="http://s10.flagcounter.com/mini/UVyt/bg_000000/txt_aa4466/border_000000/flags_0/" alt="Flag Counter" border="0"></a>
+ </div> 
+ </div> 
+ <div class="friend"> 
+ 
+ <div class="block"> 
+ 
+ <div class="col-img"> 
+ <img src="https://i.ibb.co/ss7wd16/e83e37647553bd9fdf8dd7aa27ae581a.jpg" /> 
+ </div> 
+ 
+ <div class="aside"> 
+ <h1>Mis Amigos</h1>
+  
+ 
+ <div class="col-friend"> 
+ 
+ <div class="row-friend"> 
+ <img src="https://i.postimg.cc/7P3QT68w/boy.png" /> 
+ 
+ <div class="infor"> 
+ 
+ <h4>NOMBRE</h4> 
+ ★★★★✩ 
+ <a class="me" href="http://xat.me/t">★</a> 
+ </div> 
+ </div> 
+ <div class="row-friend"> 
+<img src="https://i.postimg.cc/KjrzXGy2/girl.png" /> 
+ 
+ <div class="infor"> 
+ 
+ <h4>NOMBRE</h4> 
+ ★★★★✩ 
+ <a class="me" href="http://xat.me/t">★</a> 
+ </div> 
+ </div> 
+ 
+ <div class="row-friend"> 
+ <img src="https://i.postimg.cc/KjrzXGy2/girl.png" /> 
+ 
+ <div class="infor"> 
+ 
+ <h4>NOMBRE</h4> 
+ ★★★★✩ 
+ <a class="me" href="http://xat.me/t">★</a> 
+ </div> 
+ </div> 
+ 
+ <div class="row-friend"> 
+ <img src="https://i.postimg.cc/KjrzXGy2/girl.png" /> 
+ 
+ <div class="infor"> 
+ 
+ <h4>NOMBRE</h4> 
+ ★★★★✩ 
+ <a class="me" href="http://xat.me/t">★</a> 
+ </div> 
+ </div> 
+ 
+ <div class="row-friend"> 
+ <img src="https://i.postimg.cc/KjrzXGy2/girl.png" /> 
+ 
+ <div class="infor"> 
+ 
+ <h4>NOMBRE</h4> 
+ ★★★★✩ 
+ <a class="me" href="http://xat.me/t">★</a> 
+ </div> 
+ </div>
+ 
+ <div class="row-friend"> 
+ <img src="https://i.postimg.cc/KjrzXGy2/girl.png" /> 
+ 
+ <div class="infor"> 
+ 
+ <h4>NOMBRE</h4> 
+ ★★★★✩ 
+ <a class="me" href="http://xat.me/t">★</a>
+ 
+ </div> 
+ </div> 
+ </div> 
+ </div> 
+ </div> 
+ </div> 
+ 
+ <div class="video"> 
+ 
+ <div class="block"> 
+ 
+ <div class="box-video"> 
+ <iframe width="628" height="340" src="https://www.youtube.com/embed/BVdngsy95mY?si=ljBHD-omd5ZOnYMb&autoplay=1&loop=1&disablekb=1" frameborder="0">Your browser does not support iframes!</iframe>
+ </div> 
+ </div> 
+ </div> 
+<audio "controls" "autoplay" "loop">
+  	<source src="https://compartime.github.io/space/dani/musica/HernandoSiTeViera.mp3" type="audio/mp3">
+  	Tu navegador no soporta HTML5 audio.
+</audio>
+
+
+ 
+ <div class="chat"> 
+ 
+ <div class="block"> 
+ 
+ <div class="box-chat"> 
+ <img src="https://xatimg.com/image/L1CxNio1Eii5.gif" /> 
+ 
+ <p class="desc"> </p></div> 
+ </div> 
+ </div> 
+ </div> 
+ </div> 
+ </div> </div></div></div></div></div></div></div></div></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Public+Sans|Karla" rel="stylesheet">
+<link href="https://compartime.github.io/musica/glenplayer03.css" rel="stylesheet">
+<script src="https://compartime.github.io/musica/glenplayer03.js"></script>
+<style element="glenplayer03">
+:root {
+    --MusicBox-Left-Or-Right:left;
+    --MusicBox-Edge-Distance:12px;
+    --MusicBox-Width:214px; 
+    --MusicBox-Title-Padding:15px;
+    --MusicBox-Title-Background:  #e53935 ;
+    --MusicBox-Title-Size:10px;
+    --MusicBox-Title-Color:#fff;
+    --MusicBox-Title-Corner-Roundness:8px;
+    --MusicBox-Main-Background:rgba(176, 174, 174, 0.2);
+    --MusicBox-Main-Padding:14px;
+    --MusicBox-Side-Borders: #e53935 ;
+    --Album-Art-Size:32px;
+    --Album-Art-Corner-Roundness:3px;
+    --Album-Art-Gap:10px;
+    --Song-Name-Size:9px;
+    --Song-Name-Color: #7d3c98 ;
+    --Artist-Name-Size:10px;
+    --Artist-Name-Color:#fff;
+    --Music-Buttons-Size:11px;
+    --Music-Buttons-Color: #7d3c98;
+    --Track-Spacing:9px;
+    --Autoplay-First-Song:yes;
+    --Autoplay-Next-Song:yes;
+    --Loop-Playlist-Infinitely:yes;
+}
+</style>
+
+<div glenplayer03>
+<div musicbox-title>canciones</div>  
+
+<img album-art src="https://xatimg.com/image/6DFjh2kvOI1E.jpg">  
+<div song-name>Si Te Viera</div>
+<div artist-name>Hernando</div>
+<audio src="https://compartime.github.io/space/dani/musica/HernandoSiTeViera.mp3" volume="100%"></audio>
+</div>
+<!-- partial -->
+</head>
+<body>
