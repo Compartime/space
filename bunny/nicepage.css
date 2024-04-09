@@ -43338,11 +43338,18 @@ a.u-link.u-text-hover-grey-90:hover {
 
 /*end-variables sitestylecss*/
 .u-header .u-image-1 {
-  background-image: url("images/0172c807e0e3f22fcfa25bc05bc2e1b3fb5459bd29e0b68c6bca8d27967175841c6ef8508a80443568949958803a82af37f2c18049ecd279259faa_1280.jpg");
+  background-image: url("images/estrerosa.gif");
+  background-position: 50% 61.23%;
 }
 
 .u-header .u-sheet-1 {
-  min-height: 200px;
+  min-height: 195px;
+}
+
+.u-header .u-image-2 {
+  width: 707px;
+  height: 173px;
+  margin: 44px auto -22px;
 }
 .u-header .u-section-row-2 {
   background-image: none;
@@ -43367,7 +43374,7 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 @media (max-width: 1199px) {
   .u-header .u-sheet-1 {
-    min-height: 165px;
+    min-height: 535px;
   }
 }
 @media (max-width: 1199px) {
@@ -43375,21 +43382,27 @@ a.u-link.u-text-hover-grey-90:hover {
     letter-spacing: normal;
   }
 }
-@media (max-width: 991px) {
-  .u-header .u-sheet-1 {
-    min-height: 126px;
-  }
-}
+
 
 @media (max-width: 767px) {
   .u-header .u-sheet-1 {
-    min-height: 95px;
+    min-height: 494px;
+  }
+
+  .u-header .u-image-2 {
+    width: 540px;
+    height: 132px;
   }
 }
 
 @media (max-width: 575px) {
   .u-header .u-sheet-1 {
-    min-height: 60px;
+    min-height: 445px;
+  }
+
+  .u-header .u-image-2 {
+    width: 340px;
+    height: 83px;
   }
 }
 
