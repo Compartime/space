@@ -42375,9 +42375,22 @@ a.u-link.u-text-hover-grey-90:hover {
   min-height: 136px;
 }
 
+.u-header .u-image-1 {
+  width: 647px;
+  min-height: 93px;
+  height: auto;
+  background-image: url("images/Don-Tupa.png");
+  margin: 8px auto 0;
+}
+
+.u-header .u-container-layout-1 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .u-header .u-line-1 {
   transform-origin: left center;
-  margin-top: 100px;
+  margin-top: -1px;
   margin-bottom: 0;
 }
 
@@ -42404,45 +42417,32 @@ a.u-link.u-text-hover-grey-90:hover {
   margin-right: auto;
   margin-left: auto;
 }
-
-.u-header .u-image-1 {
-  width: 737px;
-  height: 158px;
-  margin: -158px auto 0;
+@media (max-width: 1199px) {
+  .u-header .u-image-1 {
+    width: 448px;
+    min-height: 63px;
+    margin-top: 9px;
+    height: auto;
+  }
 }
-
 @media (max-width: 991px) {
-  .u-header .u-sheet-1 {
-    min-height: 132px;
+  .u-header .u-image-1 {
+    width: 448px;
   }
 
-  .u-header .u-image-1 {
-    width: 720px;
-    height: 154px;
+  .u-header .u-container-layout-1 {
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 }
-@media (max-width: 767px) {
-  .u-header .u-sheet-1 {
-    min-height: 94px;
-  }
 
-  .u-header .u-image-1 {
-    width: 540px;
-    height: 116px;
-  }
-}
 @media (max-width: 575px) {
-  .u-header .u-sheet-1 {
-    min-height: 51px;
-  }
-
   .u-header .u-image-1 {
     width: 340px;
-    height: 73px;
   }
 }
  .u-footer {
-  background-image: none;
+  background-image: linear-gradient(#333333, black);
 }
 
 .u-footer .u-sheet-1 {
@@ -42451,6 +42451,7 @@ a.u-link.u-text-hover-grey-90:hover {
 
 .u-footer .u-text-1 {
   width: 417px;
+  font-weight: 700;
   margin: 49px auto;
 }
 @media (max-width: 1199px) {
