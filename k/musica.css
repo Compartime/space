@@ -1,0 +1,208 @@
+ .u-section-1 {
+  background-image: none;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 50vw;
+}
+
+.u-section-1 .u-custom-html-1 {
+  margin-top: 4px;
+  margin-bottom: 0;
+  height: auto;
+  min-height: 39px;
+}
+
+.u-section-1 .u-group-1 {
+  width: 750px;
+  min-height: 463px;
+  height: auto;
+  box-shadow: 0px 0px 30px 3px rgba(255,19,3,1);
+  --radius: 30px;
+  background-image: none;
+  margin: 25px auto 60px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 0;
+}
+
+.u-section-1 .u-custom-html-2 {
+  height: 191px;
+  width: 533px;
+  margin: 21px auto 0;
+}
+
+.u-section-1 .u-group-2 {
+  min-height: 124px;
+  height: auto;
+  --bottom-right-radius: 20px;
+  --bottom-left-radius: 20px;
+  margin-top: 127px;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-container-layout-2 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.u-section-1 .u-custom-html-3 {
+  height: auto;
+  min-height: 85px;
+  width: 495px;
+  margin: 20px auto 0;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-group-1 {
+    min-height: 536px;
+    height: auto;
+  }
+
+  .u-section-1 .u-custom-html-2 {
+    min-height: 298px;
+    width: 400px;
+  }
+
+  .u-section-1 .u-group-2 {
+    margin-top: 88px;
+    height: auto;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 774px;
+  }
+
+  .u-section-1 .u-group-1 {
+    margin-top: 52px;
+    margin-right: initial;
+    margin-left: initial;
+    width: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 50vw;
+  }
+
+  .u-section-1 .u-group-1 {
+    min-height: 490px;
+    margin-top: 21px;
+    width: auto;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-1 .u-group-2 {
+    margin-top: 36px;
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 688px;
+  }
+
+  .u-section-1 .u-group-1 {
+    min-height: 496px;
+    margin-top: 0;
+    width: auto;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-1 .u-custom-html-2 {
+    height: 298px;
+    width: 340px;
+    margin-top: -9px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .u-section-1 .u-group-2 {
+    min-height: 192px;
+    margin-top: 13px;
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .u-section-1 .u-custom-html-3 {
+    min-height: 172px;
+    margin-right: initial;
+    margin-left: initial;
+    width: auto;
+  }
+} .video {
+  position: center;
+  left: 0;
+  top: 0;
+  opacity: 1;
+}
+.contenedor {
+		margin:auto;
+		width:100%;
+		height:270px;
+		text-align:center;
+		background:url('')
+	   
+	}
+	.contenedor iframe {
+		width:100%;
+		height:270px;
+		top:0px;
+		position:center;
+	}
+.contenedor iframe {
+    padding: 0px;
+    background-color: #000;
+    color: #000;
+    width: 100%;
+	height: 270px;
+    font-size: 1.2em;
+    box-shadow: 0 0 40px  #ffffff;
+    border-radius: 20px;
+  }
+     h1 {
+    color:  #ffb2bb;
+    text-shadow: 0 0 100px #ff0000;
+	font-size: 1.1em;
+	width: 150px;
+  }
+.menu {
+/* Add a black background color to the top navigation */
+.topnav1 {
+  background-color: #000;
+  overflow: hidden;
+}
+/* Style the links inside the navigation bar */
+.topnav1 a {
+  float: center;
+  color: #ffffff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+/* Change the color of links on hover */
+.topnav1 a:hover {
+  background-color: #ff0000;
+  color: black;
+}
+/* Add a color to the active/current link */
+.topnav1 a.active {
+  background-color: #ff0000;
+  color: white;
+}
+}
