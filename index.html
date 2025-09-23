@@ -433,7 +433,7 @@
 	<div id="sfcheubejzh9wape3esn6g8dmwcq25trbjr"></div>
 <script type="text/javascript" src="https://counter1.optistats.ovh/private/counter.js?c=heubejzh9wape3esn6g8dmwcq25trbjr&down=async" async></script>
 <noscript><a href="https://www.contadorvisitasgratis.com" title="contadores para web"><img src="https://counter1.optistats.ovh/private/contadorvisitasgratis.php?c=heubejzh9wape3esn6g8dmwcq25trbjr" border="0" title="contadores para web" alt="contadores para web"></a></noscript>
-        <p>&copy; 2025 Mi Portafolio Creativo. Todos los derechos reservados.</p>
+        <p>&copy; 2023 Mi Portafolio Creativo. Todos los derechos reservados. </p>
     </footer>
 
     <script src="https://www.youtube.com/iframe_api"></script>
@@ -550,8 +550,6 @@
             try {
                 const response = await fetch(`https://wttr.in/${CITY_NAME}?format=%t%20%C`);
                 const data = await response.text();
-				// Esta línea de código se encarga de reemplazar el signo '+'
-        data = data.replace('+', '');
                 weatherElement.textContent = `${CITY_NAME}: ${data}`;
             } catch (error) {
                 console.error("Error al obtener el clima:", error);
