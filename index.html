@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio Creativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
+    <style>
+        /* CSS para un diseño profesional y responsive */
+        :root {
+            --background-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --primary-color: #5d9cec;
+            --secondary-color: #a4b0be;
+            --video-shadow-color: #5d9cec;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Contenido principal para evitar solapamiento con el menú fijo */
+        .main-content {
+            padding-top: 200px;
+        }
+        
+        /* Encabezado y navegación fijos */
+        .header {
+            position: fixed;
+            top: 100px;
+            left: 0;
+            width: 100%;
+            background-color: var(--background-color);
+            padding: 20px 0;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: top 0.3s ease;
+        }
+        
+        .header h1 {
+            font-weight: 300;
+            font-size: 2.5em;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+        
+        /* Estilo para la fecha y hora y el clima */
+        .header-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .header-info span {
+            margin: 0 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-info .weather-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .navbar {
+            margin-top: 15px;
+        }
+
+        .navbar a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 400;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .navbar a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Títulos de sección */
+        h2 {
+            text-align: center;
+            font-weight: 700;
+            font-size: 2em;
+            margin-top: 80px;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        /* Galería (fotos y videos) */
+        .gallery-container {
+            display: none;
+            padding: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        
+        .gallery-container.active {
+            display: block;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item img, .gallery-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .gallery-item:hover img, .gallery-item:hover video {
+            transform: scale(1.05);
+        }
+
+        /* Descripción al pasar el mouse */
+        .item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+            color: #fff;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .item-caption {
+            transform: translateY(0);
+        }
+
+        .item-caption h3 {
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+        
+        /* Pie de página */
+        .footer {
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 80px;
+            font-size: 0.9em;
+            color: var(--secondary-color);
+            border-top: 1px solid #333;
+        }
+
+        /* Estilos para la sección de inicio */
+        #inicio-container {
+            text-align: center;
+            padding-top: 40px;
+        }
+        
+        .inicio-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .inicio-content .poema {
+            flex: 1;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--secondary-color);
+            margin: 0;
+            text-align: center;
+        }
+
+        .inicio-content .poema p {
+            margin: 0;
+        }
+
+        .inicio-content .poema strong {
+            color: var(--primary-color);
+        }
+
+        .inicio-content .imagen-inicio {
+            flex-shrink: 0;
+            width: 180px;
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease-in-out;
+            cursor: pointer;
+        }
+        
+        /* Efecto de movimiento al pasar el mouse sobre la imagen de inicio */
+        .inicio-content .imagen-inicio:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilos para el reproductor de YouTube y el carrusel */
+        .video-player-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .video-frame {
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 0 30px var(--video-shadow-color);
+            animation: heartbeat 4s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px var(--video-shadow-color); }
+            25% { transform: scale(1.02); box-shadow: 0 0 40px var(--video-shadow-color); }
+            50% { transform: scale(1); box-shadow: 0 0 30px var(--video-shadow-color); }
+            75% { transform: scale(1.02); box-shadow: 0 0 40px var(--video-shadow-color); }
+        }
+
+        .video-thumbnails-wrapper {
+            position: relative;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 40px; /* Espacio para las flechas */
+            display: flex;
+            align-items: center;
+        }
+
+        .video-thumbnails-viewport {
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .video-thumbnails-carousel {
+            display: flex;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .video-thumb {
+            width: 116px;
+            height: 75px;
+            cursor: pointer;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            transition: 0.3s;
+            flex-shrink: 0;
+            object-fit: cover;
+            scroll-snap-align: center;
+        }
+
+        .video-thumb:hover {
+            box-shadow: 0 0 20px var(--primary-color);
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+        }
+
+        .video-thumb.active-thumb {
+            border-color: var(--primary-color);
+            animation: pulseThumb 1s infinite;
+        }
+
+        @keyframes pulseThumb {
+            0%, 100% { transform: scale(1.1); }
+            50% { transform: scale(1.0); }
+        }
+
+        .arrow-carousel {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            z-index: 10;
+            user-select: none;
+            opacity: 0.8;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .arrow-carousel:hover {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .arrow-carousel.left {
+            left: 0;
+        }
+
+        .arrow-carousel.right {
+            right: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .arrow-carousel {
+                display: none;
+            }
+            .video-thumbnails-wrapper {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Mi Portafolio</h1>
+        <div class="header-info">
+            <span id="datetime"></span>
+            <span id="weather"></span>
+        </div>
+        <nav class="navbar">
+            <a data-target="inicio-container">Inicio</a>
+            <a data-target="fotos-container">Fotografía</a>
+            <a data-target="videos-container">Video</a>
+            <a data-target="contacto-container">Contacto</a>
+        </nav>
+    </header>
+
+    <main class="container main-content">
+        
+        <section id="inicio-container" class="gallery-container active">
+            <h2>Bienvenido a Mi Mundo Creativo</h2>
+            <div class="inicio-content">
+                <div class="poema">
+                    <p>En cada píxel, un sueño se dibuja,</p>
+                    <p>En cada fotograma, una historia se anuda.</p>
+                    <p>Aquí, el arte se encuentra con la pasión,</p>
+                    <p>Creando instantes que desafían la razón.</p>
+                    <p><strong>Observa, siente, y déjate llevar,</strong></p>
+                    <p>Por la magia que te quiero mostrar.</p>
+                </div>
+                <img src="https://xatimg.com/image/a88ihWnL9TNS.png" alt="Imagen de bienvenida" class="imagen-inicio">
+            </div>
+        </section>
+
+        <section id="fotos-container" class="gallery-container">
+            <h2>Galería Fotográfica</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://xatimg.com/image/msYH0DmDmDea.png" alt="Descripción de la foto 1">
+                    <div class="item-caption">
+                        <h3>Título de la Foto 1</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://xatimg.com/image/9DyuHoTONJWU.png" alt="Descripción de la foto 2">
+                    <div class="item-caption">
+                        <h3>Título de la Foto 2</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://xatimg.com/image/XFLUjZuFgUed.png" alt="Descripción de la foto 3">
+                    <div class="item-caption">
+                        <h3>Título de la Foto 3</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="videos-container" class="gallery-container">
+            <h2>Creaciones en Video</h2>
+            <div class="video-player-container">
+                <div class="video-frame" id="video-player"></div>
+
+                <div class="video-thumbnails-wrapper">
+                    <div class="arrow-carousel left">&#10094;</div>
+                    <div class="video-thumbnails-viewport">
+                        <div class="video-thumbnails-carousel">
+                            <img src="https://img.youtube.com/vi/bjdwES7m58M/hqdefault.jpg" data-video="bjdwES7m58M" class="video-thumb" title="Título de la Canción 1">
+                            <img src="https://img.youtube.com/vi/ilHPmUKCypg/hqdefault.jpg" data-video="ilHPmUKCypg" class="video-thumb" title="Título de la Canción 2">
+                            <img src="https://img.youtube.com/vi/MeJkPosqXPY/hqdefault.jpg" data-video="MeJkPosqXPY" class="video-thumb" title="Título de la Canción 3">
+                            <img src="https://img.youtube.com/vi/_9g2axX99wA/hqdefault.jpg" data-video="_9g2axX99wA" class="video-thumb" title="Título de la Canción 4">
+                            <img src="https://img.youtube.com/vi/NQHHjipTX2w/hqdefault.jpg" data-video="NQHHjipTX2w" class="video-thumb" title="Título de la Canción 5">
+                            <img src="https://img.youtube.com/vi/v4paDVXN6ZE/hqdefault.jpg" data-video="v4paDVXN6ZE" class="video-thumb" title="Título de la Canción 6">
+                        </div>
+                    </div>
+                    <div class="arrow-carousel right">&#10095;</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contacto-container" class="gallery-container">
+            <h2>Contacto</h2>
+            <p style="text-align: center;">Para colaboraciones o consultas, contáctame en:</p>
+            <p style="text-align: center;"><a href="mailto:tu-email@ejemplo.com" style="color: var(--primary-color); text-decoration: none; font-weight: 700;">tu-email@ejemplo.com</a></p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2023 Mi Portafolio Creativo. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player;
+        const navLinks = document.querySelectorAll('.navbar a');
+        const sections = document.querySelectorAll('.gallery-container');
+        const videos = ["bjdwES7m58M", "ilHPmUKCypg", "MeJkPosqXPY", "_9g2axX99wA", "NQHHjipTX2w", "v4paDVXN6ZE"];
+        let currentIndex = 0;
+        const thumbs = document.querySelectorAll('.video-thumb');
+        const carousel = document.querySelector('.video-thumbnails-carousel');
+        const leftBtn = document.querySelector('.arrow-carousel.left');
+        const rightBtn = document.querySelector('.arrow-carousel.right');
+        const thumbArr = Array.from(thumbs);
+        const thumbVisible = 5;
+        let scrollIndex = 0;
+    
+        // YouTube API
+        function onYouTubeIframeAPIReady() {
+            if (!player) {
+                player = new YT.Player('video-player', {
+                    height: '360',
+                    width: '640',
+                    videoId: videos[currentIndex],
+                    playerVars: { controls: 1, rel: 0, autoplay: 1 },
+                    events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
+                });
+            } else {
+                player.loadVideoById(videos[currentIndex]);
+            }
+        }
+    
+        function onPlayerReady(event) {
+            highlightThumbnail(videos[currentIndex]);
+        }
+    
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                currentIndex = (currentIndex + 1) % videos.length;
+                player.loadVideoById(videos[currentIndex]);
+                highlightThumbnail(videos[currentIndex]);
+            }
+        }
+    
+        // Carrusel y Miniaturas
+        thumbs.forEach((thumb, index) => {
+            thumb.addEventListener('click', () => {
+                currentIndex = index;
+                player.loadVideoById(videos[currentIndex]);
+                highlightThumbnail(videos[currentIndex]);
+            });
+        });
+    
+        leftBtn.addEventListener('click', () => {
+            scrollIndex = Math.max(scrollIndex - 1, 0);
+            updateCarousel();
+        });
+    
+        rightBtn.addEventListener('click', () => {
+            const maxIndex = thumbArr.length - thumbVisible;
+            scrollIndex = Math.min(scrollIndex + 1, maxIndex);
+            updateCarousel();
+        });
+    
+        function getThumbWidth() {
+            const thumbStyle = getComputedStyle(thumbArr[0]);
+            const gap = parseInt(getComputedStyle(carousel).gap) || 0;
+            return thumbArr[0].offsetWidth + gap;
+        }
+    
+        function updateCarousel() {
+            const width = getThumbWidth();
+            carousel.style.transform = `translateX(-${scrollIndex * width}px)`;
+        }
+    
+        function ensureVisibleActiveThumb(index) {
+            if(index < scrollIndex) scrollIndex = index;
+            else if(index >= scrollIndex + thumbVisible) scrollIndex = index - thumbVisible + 1;
+            updateCarousel();
+        }
+    
+        function highlightThumbnail(videoId){
+            thumbArr.forEach(t => t.classList.remove('active-thumb'));
+            const activeThumb = thumbArr.find(t => t.dataset.video === videoId);
+            if(activeThumb) {
+                activeThumb.classList.add('active-thumb');
+                const index = thumbArr.indexOf(activeThumb);
+                ensureVisibleActiveThumb(index);
+            }
+        }
+    
+        // Soporte táctil móvil
+        let startX, isDragging = false;
+        carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDragging = true; });
+        carousel.addEventListener('touchmove', e => {
+            if(!isDragging) return;
+            const dx = startX - e.touches[0].clientX;
+            const matrix = getComputedStyle(carousel).transform;
+            let currentTranslate = 0;
+            if(matrix !== 'none'){
+                currentTranslate = parseFloat(matrix.split(',')[4]);
+            }
+            carousel.style.transform = `translateX(${currentTranslate - dx}px)`;
+            startX = e.touches[0].clientX;
+        });
+        carousel.addEventListener('touchend', () => { isDragging = false; });
+        
+        // Fecha, hora y clima
+        const datetimeElement = document.getElementById('datetime');
+        const weatherElement = document.getElementById('weather');
+        const CITY_NAME = 'Buenos Aires';
+        
+        async function getWeatherData() {
+            try {
+                const response = await fetch(`https://wttr.in/${CITY_NAME}?format=%t%20%C`);
+                const data = await response.text();
+                weatherElement.textContent = `${CITY_NAME}: ${data}`;
+            } catch (error) {
+                console.error("Error al obtener el clima:", error);
+                weatherElement.textContent = 'Error al cargar el clima';
+            }
+        }
+    
+        function updateDateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const formattedDate = now.toLocaleDateString('es-ES', options);
+            datetimeElement.textContent = formattedDate;
+        }
+    
+        // Inicialización al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+            getWeatherData();
+            setInterval(getWeatherData, 3600000);
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    document.getElementById(targetId).classList.add('active');
+                    if (targetId === 'videos-container') {
+                        onYouTubeIframeAPIReady();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
