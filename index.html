@@ -180,7 +180,7 @@
         .footer {
             text-align: center;
             padding: 50px 20px;
-            margin-top: 40px;
+            margin-top: 80px;
             font-size: 0.9em;
             color: var(--secondary-color);
             border-top: 1px solid #333;
@@ -544,13 +544,32 @@
         // Fecha, hora y clima
         const datetimeElement = document.getElementById('datetime');
         const weatherElement = document.getElementById('weather');
-        const CITY_NAME = 'Buenos Aires';
         
         async function getWeatherData() {
+            const API_KEY = '40f156dd1246e83e057e453846039eac';
+            const city = 'Buenos Aires';
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=es`;
             try {
-                const response = await fetch(`https://wttr.in/${CITY_NAME}?format=%t%20%C`);
-                const data = await response.text();
-                weatherElement.textContent = `${CITY_NAME}: ${data}`;
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+                const data = await response.json();
+        
+                const temp = Math.round(data.main.temp);
+                const description = data.weather[0].description;
+                const iconCode = data.weather[0].icon;
+                const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+        
+                const iconImg = document.createElement('img');
+                iconImg.src = iconUrl;
+                iconImg.alt = description;
+                iconImg.classList.add('weather-icon');
+        
+                weatherElement.innerHTML = '';
+                weatherElement.textContent = `Buenos Aires: ${temp}°C, `;
+                weatherElement.appendChild(iconImg);
+        
             } catch (error) {
                 console.error("Error al obtener el clima:", error);
                 weatherElement.textContent = 'Error al cargar el clima';
