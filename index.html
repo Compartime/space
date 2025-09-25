@@ -334,11 +334,33 @@
         }
         
         @media (max-width: 768px) {
+            /* Oculta las flechas de navegación para pantallas móviles */
             .arrow-carousel {
                 display: none;
             }
             .video-thumbnails-wrapper {
                 padding: 0;
+            }
+            
+            /* Configura el carrusel para mostrar solo 2 miniaturas a la vez */
+            .video-thumbnails-viewport {
+                overflow-x: scroll; /* Permite desplazamiento horizontal */
+                scroll-snap-type: x mandatory; /* Mejora la experiencia de desplazamiento */
+                -webkit-overflow-scrolling: touch; /* Suaviza el desplazamiento en iOS */
+            }
+            
+            .video-thumbnails-carousel {
+                /* Fuerza a que las miniaturas no se envuelvan y ocupen el espacio necesario */
+                flex-wrap: nowrap; 
+                gap: 10px;
+                /* El ancho total del carrusel será dinámico */
+                width: fit-content;
+            }
+            
+            .video-thumb {
+                /* Ajusta el ancho de la miniatura para que 2 quepan en la pantalla con un pequeño espacio */
+                width: calc(50% - 15px); /* Calcula el ancho para que quepan 2 miniaturas más el espaciado */
+                scroll-snap-align: start; /* Alinea cada miniatura al inicio al desplazarse */
             }
         }
     </style>
@@ -488,14 +510,18 @@
         });
     
         leftBtn.addEventListener('click', () => {
-            scrollIndex = Math.max(scrollIndex - 1, 0);
-            updateCarousel();
+            if (window.innerWidth > 768) {
+                scrollIndex = Math.max(scrollIndex - 1, 0);
+                updateCarousel();
+            }
         });
     
         rightBtn.addEventListener('click', () => {
-            const maxIndex = thumbArr.length - thumbVisible;
-            scrollIndex = Math.min(scrollIndex + 1, maxIndex);
-            updateCarousel();
+            if (window.innerWidth > 768) {
+                const maxIndex = thumbArr.length - thumbVisible;
+                scrollIndex = Math.min(scrollIndex + 1, maxIndex);
+                updateCarousel();
+            }
         });
     
         function getThumbWidth() {
@@ -510,9 +536,11 @@
         }
     
         function ensureVisibleActiveThumb(index) {
-            if(index < scrollIndex) scrollIndex = index;
-            else if(index >= scrollIndex + thumbVisible) scrollIndex = index - thumbVisible + 1;
-            updateCarousel();
+            if (window.innerWidth > 768) {
+                if(index < scrollIndex) scrollIndex = index;
+                else if(index >= scrollIndex + thumbVisible) scrollIndex = index - thumbVisible + 1;
+                updateCarousel();
+            }
         }
     
         function highlightThumbnail(videoId){
