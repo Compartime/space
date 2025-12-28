@@ -6,13 +6,13 @@
     <title>Renato Fereira | Brasil Neon Elite</title>
     <style>
         body {
-            margin: 0; padding: 0; background: #000;
+            margin: 0; padding: 0; 
+            background: radial-gradient(circle at center, #003311 0%, #001a08 60%, #000000 100%);
             font-family: 'Segoe UI', sans-serif; color: white;
             display: flex; flex-direction: column; align-items: center;
             height: 100vh; overflow: hidden; position: relative;
         }
 
-        /* CAPA DE EFECTOS AFUERA (ESTRELLAS Y NOTAS) */
         #magic-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         .magic-effect { position: absolute; color: #ffdf00; text-shadow: 0 0 10px #ffdf00; animation: fly linear forwards; }
         @keyframes fly {
@@ -21,16 +21,12 @@
             100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
         }
 
-        /* MARCO PRINCIPAL AMARILLO + SERPIENTE VERDE */
         .neon-border-box {
-            position: relative;
-            margin-top: 80px !important;
-            width: 95%; max-width: 850px;
-            height: 700px !important;
+            position: relative; margin-top: 60px !important;
+            width: 95%; max-width: 850px; height: 720px !important;
             padding: 4px; background: #000; border-radius: 40px;
             overflow: hidden; z-index: 10;
-            box-shadow: 0 0 20px #ffdf00, inset 0 0 10px #ffdf00;
-            border: 1px solid #ffdf00;
+            box-shadow: 0 0 20px #ffdf00; border: 1px solid #ffdf00;
         }
 
         .neon-border-box::before, .snake-player::before {
@@ -48,7 +44,6 @@
             padding: 20px; box-sizing: border-box; overflow: hidden;
         }
 
-        /* EFECTO DE NOTAS DENTRO DE LA CAJA */
         .inner-magic { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
         .note-inner { position: absolute; color: #ffdf00; text-shadow: 0 0 8px #ffdf00; bottom: -50px; animation: floatUp linear forwards; }
         @keyframes floatUp {
@@ -57,15 +52,13 @@
             100% { transform: translateY(-700px) scale(1); opacity: 0; }
         }
 
-        /* NAVEGACIÓN Y CONTENIDO */
         .nav-menu { display: flex; gap: 15px; margin-bottom: 20px; z-index: 20; position: relative; }
         .nav-item { padding: 8px 25px; border: 1px solid #ffdf00; border-radius: 30px; color: #ffdf00; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .nav-item.active { background: #ffdf00; color: #000; box-shadow: 0 0 15px #ffdf00; }
 
-        .section { display: none; width: 100%; flex-direction: column; align-items: center; padding-top: 30px; z-index: 15; position: relative; }
+        .section { display: none; width: 100%; flex-direction: column; align-items: center; padding-top: 20px; z-index: 15; position: relative; }
         .section.active { display: flex; animation: fadeIn 0.5s; }
 
-        /* REPRODUCTOR */
         .snake-player {
             position: relative; width: 568px; height: 308px;
             padding: 4px; background: #000; border-radius: 20px; overflow: hidden;
@@ -74,19 +67,41 @@
         }
         .video-container { position: relative; width: 560px; height: 300px; border-radius: 15px; overflow: hidden; background: #000; z-index: 3; }
 
-        /* CARRUSEL Y LATIDO */
-        .thumb-wrapper { display: flex; align-items: center; gap: 15px; margin-top: 25px; width: 100%; justify-content: center; z-index: 20; position: relative; }
-        .video-thumbnails-viewport { overflow: hidden; width: 650px; padding: 10px 0; }
-        .video-thumbnails-carousel { display: flex; gap: 15px; transition: transform 0.5s ease; }
-        .video-thumb { width: 110px; height: 65px; object-fit: cover; cursor: pointer; border: 2px solid #00ff66; border-radius: 8px; opacity: 0.5; transition: 0.3s; }
-        .active-thumb { opacity: 1; border-color: #ffdf00; transform: scale(1.1); animation: pulse-neon 1.5s infinite ease-in-out; }
-
-        @keyframes pulse-neon {
-            0%, 100% { box-shadow: 0 0 5px #ffdf00; border-color: #00ff66; }
-            50% { box-shadow: 0 0 25px #00ff66; border-color: #ffdf00; }
+        /* --- CARRUSEL CORREGIDO (5 MINIATURAS COMPLETAS) --- */
+        .thumb-wrapper { display: flex; align-items: center; gap: 10px; margin-top: 25px; width: 100%; justify-content: center; z-index: 20; position: relative; }
+        
+        .video-thumbnails-viewport { 
+            overflow: hidden; 
+            width: 610px; /* Ancho aumentado para que entren las 5 y el escalado de la activa */
+            padding: 15px 10px; /* Espacio para que no se corte el brillo/escala */
+            display: flex;
+            justify-content: flex-start;
+        }
+        
+        .video-thumbnails-carousel { 
+            display: flex; 
+            gap: 15px; 
+            transition: transform 0.5s ease-in-out;
+            align-items: center;
         }
 
-        /* FOTOS */
+        .video-thumb { 
+            width: 100px; height: 60px; object-fit: cover; cursor: pointer; 
+            border: 2px solid #00ff66; border-radius: 8px; opacity: 0.4; 
+            transition: 0.4s; flex-shrink: 0; 
+        }
+
+        .active-thumb { 
+            opacity: 1; border-color: #ffdf00; transform: scale(1.15); 
+            animation: pulse-neon 1.5s infinite ease-in-out; 
+            z-index: 5;
+        }
+
+        @keyframes pulse-neon {
+            0%, 100% { box-shadow: 0 0 8px #ffdf00; }
+            50% { box-shadow: 0 0 20px #00ff66; }
+        }
+
         .book { position: relative; width: 500px; height: 320px; perspective: 2000px; }
         .page { position: absolute; width: 100%; height: 100%; transform-origin: left; transition: 1s; backface-visibility: hidden; border: 2px solid #ffdf00; border-radius: 10px; overflow: hidden; }
         .page img { width: 100%; height: 100%; object-fit: cover; }
@@ -99,7 +114,8 @@
         }
 
         .name-container { font-size: 2.2rem; color: #00ff66; font-weight: 900; margin-top: 10px; display: flex; align-items: center; gap: 15px; text-shadow: 0 0 10px #00ff66; }
-        .arrow { font-size: 3rem; color: #ffdf00; cursor: pointer; user-select: none; }
+        .arrow { font-size: 3rem; color: #ffdf00; cursor: pointer; user-select: none; transition: 0.2s; }
+        .arrow:hover { transform: scale(1.2); text-shadow: 0 0 10px #ffdf00; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
@@ -117,7 +133,7 @@
                 <div class="nav-item" onclick="showSection('fotos', this)">FOTOS</div>
             </nav>
 
-            <div id="inicio" class="section active" style="padding-top: 50px;">
+            <div id="inicio" class="section active">
                 <div class="name-container">RENATO FEREIRA <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png" width="45"></div>
                 <p style="font-size: 1.2rem; color: #ffdf00;">Elite Space | Bem-vindo</p>
             </div>
@@ -162,21 +178,16 @@
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         function updateClock() {
-            const footer = document.getElementById('footer-reloj');
             const now = new Date();
-            const h = now.getHours();
-            const greet = h >= 6 && h < 12 ? "Bom Dia 🌞" : h >= 12 && h < 19 ? "Boa Tarde 🌤️" : "Boa Noite 🌙";
-            footer.innerHTML = `${greet} | ${now.toLocaleDateString('pt-BR', {day:'2-digit', month:'long'})} - ${now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})}`;
+            document.getElementById('footer-reloj').innerHTML = `Brasil Elite | ${now.toLocaleDateString('pt-BR')} - ${now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})}`;
         }
         setInterval(updateClock, 1000); updateClock();
 
-        // EFECTO AFUERA (ESTRELLAS)
         function spawnOuter() {
             const layer = document.getElementById('magic-layer');
-            const icons = ['♫', '★', '✨', '♪'];
             const span = document.createElement('span');
             span.className = 'magic-effect';
-            span.textContent = icons[Math.floor(Math.random()*icons.length)];
+            span.textContent = ['♫', '★', '✨', '♪'][Math.floor(Math.random()*4)];
             span.style.left = Math.random() * 100 + 'vw';
             span.style.top = '105vh';
             span.style.fontSize = Math.random() * 20 + 15 + 'px';
@@ -186,15 +197,13 @@
         }
         setInterval(spawnOuter, 500);
 
-        // EFECTO ADENTRO (NOTAS)
         function spawnInner() {
             const container = document.getElementById('inner-magic');
             const span = document.createElement('span');
             span.className = 'note-inner';
             span.textContent = '♪';
             span.style.left = Math.random() * 95 + '%';
-            span.style.fontSize = Math.random() * 10 + 12 + 'px';
-            span.style.animationDuration = Math.random() * 2 + 3 + 's';
+            span.style.fontSize = '12px';
             container.appendChild(span);
             setTimeout(() => span.remove(), 5000);
         }
@@ -206,19 +215,25 @@
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', { 
-                height: '100%', width: '100%', videoId: videos[0],
-                playerVars: { 'autoplay': 1, 'controls': 1, 'rel': 0 },
-                events: { 'onReady': (e) => e.target.playVideo(), 'onStateChange': (e) => { if(e.data === 0) moveMusic(1); } } 
+                videoId: videos[0],
+                playerVars: { 'autoplay': 1, 'controls': 1 },
+                events: { 'onStateChange': (e) => { if(e.data === 0) moveMusic(1); } } 
             });
             updateUI();
         }
+
         function playThis(idx) { currentIdx = idx; player.loadVideoById(videos[currentIdx]); updateUI(); }
         function moveMusic(dir) { currentIdx = (currentIdx + dir + videos.length) % videos.length; playThis(currentIdx); }
+        
         function updateUI() {
             const thumbs = document.querySelectorAll('.video-thumb');
             thumbs.forEach((t, i) => t.classList.toggle('active-thumb', i === currentIdx));
-            let offset = currentIdx <= 2 ? 0 : (currentIdx - 2) * 125;
-            document.getElementById('carousel').style.transform = `translateX(${-offset}px)`;
+            
+            const carousel = document.getElementById('carousel');
+            // Cálculo: Ancho 100 + Gap 15 = 115px
+            // Solo desplazamos 1 posición si estamos en el último video (el 6to)
+            let move = currentIdx > 4 ? (currentIdx - 4) * 115 : 0;
+            carousel.style.transform = `translateX(-${move}px)`;
         }
 
         let curPage = 0;
