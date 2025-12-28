@@ -21,8 +21,10 @@
             100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
         }
 
+        /* CAJA BAJADA 120PX ADICIONALES (Total 180px) */
         .neon-border-box {
-            position: relative; margin-top: 60px !important;
+            position: relative; 
+            margin-top: 180px !important; 
             width: 95%; max-width: 850px; height: 720px !important;
             padding: 4px; background: #000; border-radius: 40px;
             overflow: hidden; z-index: 10;
@@ -67,35 +69,18 @@
         }
         .video-container { position: relative; width: 560px; height: 300px; border-radius: 15px; overflow: hidden; background: #000; z-index: 3; }
 
-        /* --- CARRUSEL CORREGIDO (5 MINIATURAS COMPLETAS) --- */
+        /* VISOR DE 5 MINIATURAS COMPLETAS */
         .thumb-wrapper { display: flex; align-items: center; gap: 10px; margin-top: 25px; width: 100%; justify-content: center; z-index: 20; position: relative; }
-        
         .video-thumbnails-viewport { 
             overflow: hidden; 
-            width: 610px; /* Ancho aumentado para que entren las 5 y el escalado de la activa */
-            padding: 15px 10px; /* Espacio para que no se corte el brillo/escala */
+            width: 610px; 
+            padding: 15px 10px;
             display: flex;
             justify-content: flex-start;
         }
-        
-        .video-thumbnails-carousel { 
-            display: flex; 
-            gap: 15px; 
-            transition: transform 0.5s ease-in-out;
-            align-items: center;
-        }
-
-        .video-thumb { 
-            width: 100px; height: 60px; object-fit: cover; cursor: pointer; 
-            border: 2px solid #00ff66; border-radius: 8px; opacity: 0.4; 
-            transition: 0.4s; flex-shrink: 0; 
-        }
-
-        .active-thumb { 
-            opacity: 1; border-color: #ffdf00; transform: scale(1.15); 
-            animation: pulse-neon 1.5s infinite ease-in-out; 
-            z-index: 5;
-        }
+        .video-thumbnails-carousel { display: flex; gap: 15px; transition: transform 0.5s ease-in-out; align-items: center; }
+        .video-thumb { width: 100px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid #00ff66; border-radius: 8px; opacity: 0.4; transition: 0.4s; flex-shrink: 0; }
+        .active-thumb { opacity: 1; border-color: #ffdf00; transform: scale(1.15); animation: pulse-neon 1.5s infinite ease-in-out; z-index: 5; }
 
         @keyframes pulse-neon {
             0%, 100% { box-shadow: 0 0 8px #ffdf00; }
@@ -115,7 +100,6 @@
 
         .name-container { font-size: 2.2rem; color: #00ff66; font-weight: 900; margin-top: 10px; display: flex; align-items: center; gap: 15px; text-shadow: 0 0 10px #00ff66; }
         .arrow { font-size: 3rem; color: #ffdf00; cursor: pointer; user-select: none; transition: 0.2s; }
-        .arrow:hover { transform: scale(1.2); text-shadow: 0 0 10px #ffdf00; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
@@ -228,10 +212,7 @@
         function updateUI() {
             const thumbs = document.querySelectorAll('.video-thumb');
             thumbs.forEach((t, i) => t.classList.toggle('active-thumb', i === currentIdx));
-            
             const carousel = document.getElementById('carousel');
-            // Cálculo: Ancho 100 + Gap 15 = 115px
-            // Solo desplazamos 1 posición si estamos en el último video (el 6to)
             let move = currentIdx > 4 ? (currentIdx - 4) * 115 : 0;
             carousel.style.transform = `translateX(-${move}px)`;
         }
