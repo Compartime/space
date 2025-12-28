@@ -21,7 +21,7 @@
             100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
         }
 
-        /* CONTENEDOR PRINCIPAL CON MARCO AMARILLO + SERPIENTE VERDE */
+        /* CONTENEDOR PRINCIPAL MARCO AMARILLO + SERPIENTE VERDE */
         .neon-border-box {
             position: relative;
             margin-top: 80px !important;
@@ -36,7 +36,6 @@
             border: 1px solid #ffdf00;
         }
 
-        /* EFECTO SERPIENTE VERDE */
         .neon-border-box::before, .snake-player::before {
             content: '';
             position: absolute;
@@ -67,7 +66,7 @@
         .nav-item { padding: 8px 25px; border: 1px solid #ffdf00; border-radius: 30px; color: #ffdf00; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .nav-item.active { background: #ffdf00; color: #000; box-shadow: 0 0 15px #ffdf00; }
 
-        /* SECCIONES - BAJAMOS EL CONTENIDO 30PX */
+        /* SECCIONES BAJADAS 30PX */
         .section { display: none; width: 100%; flex-direction: column; align-items: center; padding-top: 30px; }
         .section.active { display: flex; animation: fadeIn 0.5s; }
 
@@ -75,30 +74,37 @@
         .snake-player {
             position: relative;
             width: 568px; height: 308px;
-            padding: 4px;
-            background: #000;
-            border-radius: 20px;
-            overflow: hidden;
+            padding: 4px; background: #000; border-radius: 20px; overflow: hidden;
             display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 0 15px #ffdf00;
-            border: 1px solid #ffdf00;
+            box-shadow: 0 0 15px #ffdf00; border: 1px solid #ffdf00;
         }
+        .video-container { position: relative; width: 560px; height: 300px; border-radius: 15px; overflow: hidden; background: #000; z-index: 3; }
 
-        .video-container {
-            position: relative;
-            width: 560px; height: 300px;
-            border-radius: 15px;
-            overflow: hidden;
-            background: #000;
-            z-index: 3;
-        }
-
-        /* CARRUSEL */
+        /* CARRUSEL Y LATIDO ACTIVO */
         .thumb-wrapper { display: flex; align-items: center; gap: 15px; margin-top: 25px; width: 100%; justify-content: center; }
         .video-thumbnails-viewport { overflow: hidden; width: 650px; padding: 10px 0; }
         .video-thumbnails-carousel { display: flex; gap: 15px; transition: transform 0.5s ease; padding-left: 5px; }
-        .video-thumb { width: 110px; height: 65px; object-fit: cover; cursor: pointer; border: 2px solid #00ff66; border-radius: 8px; opacity: 0.5; flex-shrink: 0; transition: 0.3s; }
-        .active-thumb { opacity: 1; border-color: #ffdf00; transform: scale(1.1); box-shadow: 0 0 20px #ffdf00; }
+        
+        .video-thumb { 
+            width: 110px; height: 65px; object-fit: cover; cursor: pointer; 
+            border: 2px solid #00ff66; border-radius: 8px; opacity: 0.5; 
+            flex-shrink: 0; transition: 0.3s; 
+        }
+
+        /* EFECTO LATE (PULSAR) */
+        .active-thumb { 
+            opacity: 1; 
+            border-color: #ffdf00; 
+            transform: scale(1.1); 
+            animation: pulse-neon 1.5s infinite ease-in-out;
+            z-index: 5;
+        }
+
+        @keyframes pulse-neon {
+            0% { box-shadow: 0 0 5px #ffdf00; border-color: #00ff66; }
+            50% { box-shadow: 0 0 25px #00ff66; border-color: #ffdf00; }
+            100% { box-shadow: 0 0 5px #ffdf00; border-color: #00ff66; }
+        }
 
         /* FOTOS */
         .book { position: relative; width: 500px; height: 320px; perspective: 2000px; }
