@@ -28,16 +28,15 @@
             100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
         }
 
-        /* CUADRO PRINCIPAL SIN MARCO AMARILLO - SOLO SERPIENTE */
+        /* CUADRO PRINCIPAL - SOLO SERPIENTE NEÓN */
         .neon-border-box {
             position: relative; margin-top: 150px !important; 
             width: 95%; max-width: 850px; height: 760px !important;
             padding: 4px; background: #000; border-radius: 40px;
             overflow: hidden; z-index: 10;
-            /* Se eliminó el borde y la sombra amarilla aquí */
         }
 
-        .neon-border-box::before, .snake-player::before {
+        .neon-border-box::before {
             content: ''; position: absolute; width: 250%; height: 250%;
             background: conic-gradient(transparent, transparent, transparent, #00ff66);
             top: -75%; left: -75%; animation: rotateNeon 3s linear infinite; z-index: 1;
@@ -58,7 +57,7 @@
         .section { display: none; width: 100%; flex-direction: column; align-items: center; padding-top: 10px; z-index: 15; position: relative; }
         .section.active { display: flex; animation: fadeIn 0.5s; }
 
-        /* IMAGEN CON TAMAÑO ORIGINAL Y EFECTO LATIDO */
+        /* IMAGEN CON LATIDO NEÓN */
         .img-neon-pulse {
             margin-top: 20px;
             max-width: 100%;
@@ -73,12 +72,11 @@
             100% { box-shadow: 0 0 5px #00ff66; border-color: #00ff66; transform: scale(1); }
         }
 
-        /* REPRODUCTOR */
+        /* REPRODUCTOR LIMPIO SIN EFECTOS */
         .snake-player {
-            position: relative; width: 560px; height: 315px; padding: 4px; 
+            position: relative; width: 560px; height: 315px; 
             background: #000; border-radius: 20px; overflow: hidden; 
             display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 0 15px #ffdf00; border: 1px solid #ffdf00;
         }
         .video-container { position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; background: #000; z-index: 3; }
         #player { width: 100%; height: 100%; border: none; }
