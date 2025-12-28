@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renato Fereira | Brasil Neon Elite</title>
+    <style>
+        body {
+            margin: 0; padding: 0; background: #000;
+            font-family: 'Segoe UI', sans-serif; color: white;
+            display: flex; flex-direction: column; align-items: center;
+            height: 100vh; overflow: hidden; position: relative;
+        }
+
+        /* CAPA DE EFECTOS MÁGICOS */
+        #magic-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .magic-effect { position: absolute; color: #ffdf00; text-shadow: 0 0 10px #ffdf00; animation: fly linear forwards; }
+        @keyframes fly {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+        }
+
+        /* CONTENEDOR PRINCIPAL CON MARCO AMARILLO + SERPIENTE VERDE */
+        .neon-border-box {
+            position: relative;
+            margin-top: 80px !important;
+            width: 95%; max-width: 850px;
+            height: 700px !important;
+            padding: 4px;
+            background: #000;
+            border-radius: 40px;
+            overflow: hidden;
+            z-index: 10;
+            box-shadow: 0 0 20px #ffdf00, inset 0 0 10px #ffdf00;
+            border: 1px solid #ffdf00;
+        }
+
+        /* EFECTO SERPIENTE VERDE */
+        .neon-border-box::before, .snake-player::before {
+            content: '';
+            position: absolute;
+            width: 250%; height: 250%;
+            background: conic-gradient(transparent, transparent, transparent, #00ff66);
+            top: -75%; left: -75%;
+            animation: rotateNeon 3s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotateNeon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .glass-panel {
+            position: relative;
+            width: 100%; height: 100%;
+            background: rgba(0, 10, 5, 0.97);
+            border-radius: 36px;
+            z-index: 2;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 20px; box-sizing: border-box;
+        }
+
+        /* NAVEGACIÓN */
+        .nav-menu { display: flex; gap: 15px; margin-bottom: 20px; z-index: 20; }
+        .nav-item { padding: 8px 25px; border: 1px solid #ffdf00; border-radius: 30px; color: #ffdf00; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .nav-item.active { background: #ffdf00; color: #000; box-shadow: 0 0 15px #ffdf00; }
+
+        /* SECCIONES - BAJAMOS EL CONTENIDO 30PX */
+        .section { display: none; width: 100%; flex-direction: column; align-items: center; padding-top: 30px; }
+        .section.active { display: flex; animation: fadeIn 0.5s; }
+
+        /* REPRODUCTOR */
+        .snake-player {
+            position: relative;
+            width: 568px; height: 308px;
+            padding: 4px;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 0 15px #ffdf00;
+            border: 1px solid #ffdf00;
+        }
+
+        .video-container {
+            position: relative;
+            width: 560px; height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+            z-index: 3;
+        }
+
+        /* CARRUSEL */
+        .thumb-wrapper { display: flex; align-items: center; gap: 15px; margin-top: 25px; width: 100%; justify-content: center; }
+        .video-thumbnails-viewport { overflow: hidden; width: 650px; padding: 10px 0; }
+        .video-thumbnails-carousel { display: flex; gap: 15px; transition: transform 0.5s ease; padding-left: 5px; }
+        .video-thumb { width: 110px; height: 65px; object-fit: cover; cursor: pointer; border: 2px solid #00ff66; border-radius: 8px; opacity: 0.5; flex-shrink: 0; transition: 0.3s; }
+        .active-thumb { opacity: 1; border-color: #ffdf00; transform: scale(1.1); box-shadow: 0 0 20px #ffdf00; }
+
+        /* FOTOS */
+        .book { position: relative; width: 500px; height: 320px; perspective: 2000px; }
+        .page { position: absolute; width: 100%; height: 100%; transform-origin: left; transition: 1s; backface-visibility: hidden; border: 2px solid #ffdf00; border-radius: 10px; overflow: hidden; }
+        .page img { width: 100%; height: 100%; object-fit: cover; }
+        .page-flip { transform: rotateY(-180deg); }
+
+        .footer-tempo { 
+            position: absolute; bottom: 0; width: 100%; text-align: center; 
+            padding: 12px 0; color: #ffdf00; background: rgba(0,0,0,0.9); 
+            font-weight: bold; border-top: 2px solid #ffdf00; font-size: 1rem;
+            border-bottom-left-radius: 36px; border-bottom-right-radius: 36px;
+        }
+
+        .name-container { font-size: 2.2rem; color: #00ff66; font-weight: 900; margin-top: 10px; display: flex; align-items: center; gap: 15px; text-shadow: 0 0 10px #00ff66; }
+        .arrow { font-size: 3rem; color: #ffdf00; cursor: pointer; user-select: none; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div id="magic-layer"></div>
+
+    <div class="neon-border-box">
+        <div class="glass-panel">
+            <nav class="nav-menu">
+                <div class="nav-item active" onclick="showSection('inicio', this)">INICIO</div>
+                <div class="nav-item" onclick="showSection('musica', this)">MUSICA</div>
+                <div class="nav-item" onclick="showSection('fotos', this)">FOTOS</div>
+            </nav>
+
+            <div id="inicio" class="section active" style="padding-top: 50px;">
+                <div class="name-container">RENATO FEREIRA <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png" width="45"></div>
+                <p style="font-size: 1.2rem; color: #ffdf00;">Elite Space | Bem-vindo</p>
+            </div>
+
+            <div id="musica" class="section">
+                <div class="snake-player">
+                    <div class="video-container"><div id="player"></div></div>
+                </div>
+                <div class="thumb-wrapper">
+                    <div class="arrow" onclick="moveMusic(-1)">&#10094;</div>
+                    <div class="video-thumbnails-viewport">
+                        <div class="video-thumbnails-carousel" id="carousel">
+                            <img src="https://i.ibb.co/4RcwhSbJ/ulises-bueno-me-levante-2.png" class="video-thumb" onclick="playThis(0)">
+                            <img src="https://i.ibb.co/hFjtR5Lm/cazzu-logo.png" class="video-thumb" onclick="playThis(1)">
+                            <img src="https://i.ibb.co/ZYrrNd2/si-te-viera-hernando.jpg" class="video-thumb" onclick="playThis(2)">
+                            <img src="https://i.ibb.co/hBydZGL/she-quedate.jpg" class="video-thumb" onclick="playThis(3)">
+                            <img src="https://xatimg.com/image/qPalPLfYxXlY.png" class="video-thumb" onclick="playThis(4)">
+                            <img src="https://i.ibb.co/YkF47Zg/mdo-yo-pienso-en-ti.jpg" class="video-thumb" onclick="playThis(5)">
+                        </div>
+                    </div>
+                    <div class="arrow" onclick="moveMusic(1)">&#10095;</div>
+                </div>
+            </div>
+
+            <div id="fotos" class="section">
+                <div class="book">
+                    <div class="page" style="z-index:6;"><img src="https://i.ibb.co/j21C7r1/bipo-600x360.png"></div>
+                    <div class="page" style="z-index:5;"><img src="https://xatimg.com/image/sHskmjyTf4nN.png"></div>
+                    <div class="page" style="z-index:4;"><img src="https://i.ibb.co/FkR74gxz/600x360-1.png"></div>
+                    <div class="page" style="z-index:3;"><img src="https://i.ibb.co/5Ct8zqS/600x360-2.png"></div>
+                    <div class="page" style="z-index:2;"><img src="https://i.ibb.co/tw6YP6XJ/600x360-4.png"></div>
+                    <div class="page" style="z-index:1;"><img src="https://i.ibb.co/6RmnvJkF/600x360-3.png"></div>
+                    <div class="arrow" style="position:absolute; left:-75px; top:40%;" onclick="prevPage()">&#10094;</div>
+                    <div class="arrow" style="position:absolute; right:-75px; top:40%;" onclick="nextPage()">&#10095;</div>
+                </div>
+            </div>
+
+            <div class="footer-tempo" id="footer-reloj">Cargando...</div>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        function updateClock() {
+            const footer = document.getElementById('footer-reloj');
+            const now = new Date();
+            const h = now.getHours();
+            const greet = h >= 6 && h < 12 ? "Bom Dia 🌞" : h >= 12 && h < 19 ? "Boa Tarde 🌤️" : "Boa Noite 🌙";
+            footer.innerHTML = `${greet} | ${now.toLocaleDateString('pt-BR', {day:'2-digit', month:'long'})} - ${now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})}`;
+        }
+        setInterval(updateClock, 1000); updateClock();
+
+        function spawnEffect() {
+            const icons = ['♫', '♪', '★', '✨', '⭐'];
+            const span = document.createElement('span');
+            span.className = 'magic-effect';
+            span.textContent = icons[Math.floor(Math.random()*icons.length)];
+            span.style.left = Math.random() * 100 + 'vw';
+            span.style.top = '105vh';
+            span.style.fontSize = Math.random() * 20 + 15 + 'px';
+            span.style.animationDuration = Math.random() * 3 + 4 + 's';
+            document.getElementById('magic-layer').appendChild(span);
+            setTimeout(() => span.remove(), 7000);
+        }
+        setInterval(spawnEffect, 400);
+
+        let player;
+        const videos = ["bjdwES7m58M", "ilHPmUKCypg", "MeJkPosqXPY", "_9g2axX99wA", "NQHHjipTX2w", "v4paDVXN6ZE"];
+        let currentIdx = 0;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', { height: '100%', width: '100%', videoId: videos[0], events: { 'onStateChange': (e) => { if(e.data === 0) moveMusic(1); } } });
+            updateUI();
+        }
+        function playThis(idx) { currentIdx = idx; player.loadVideoById(videos[currentIdx]); updateUI(); }
+        function moveMusic(dir) { currentIdx = (currentIdx + dir + videos.length) % videos.length; playThis(currentIdx); }
+        function updateUI() {
+            const thumbs = document.querySelectorAll('.video-thumb');
+            thumbs.forEach((t, i) => t.classList.toggle('active-thumb', i === currentIdx));
+            let offset = currentIdx <= 2 ? 0 : (currentIdx - 2) * 125;
+            document.getElementById('carousel').style.transform = `translateX(${-offset}px)`;
+        }
+
+        let curPage = 0;
+        const pages = document.querySelectorAll('.page');
+        function nextPage() { if(curPage < pages.length) { pages[curPage].classList.add('page-flip'); curPage++; } }
+        function prevPage() { if(curPage > 0) { curPage--; pages[curPage].classList.remove('page-flip'); } }
+
+        function showSection(id, btn) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(id).classList.add('active'); btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
