@@ -21,7 +21,7 @@
             100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
         }
 
-        /* CONTENEDOR PRINCIPAL MARCO AMARILLO + SERPIENTE VERDE */
+        /* MARCO PRINCIPAL AMARILLO + SERPIENTE VERDE */
         .neon-border-box {
             position: relative;
             margin-top: 80px !important;
@@ -80,24 +80,15 @@
         }
         .video-container { position: relative; width: 560px; height: 300px; border-radius: 15px; overflow: hidden; background: #000; z-index: 3; }
 
-        /* CARRUSEL Y LATIDO ACTIVO */
+        /* CARRUSEL Y LATIDO */
         .thumb-wrapper { display: flex; align-items: center; gap: 15px; margin-top: 25px; width: 100%; justify-content: center; }
         .video-thumbnails-viewport { overflow: hidden; width: 650px; padding: 10px 0; }
         .video-thumbnails-carousel { display: flex; gap: 15px; transition: transform 0.5s ease; padding-left: 5px; }
-        
-        .video-thumb { 
-            width: 110px; height: 65px; object-fit: cover; cursor: pointer; 
-            border: 2px solid #00ff66; border-radius: 8px; opacity: 0.5; 
-            flex-shrink: 0; transition: 0.3s; 
-        }
+        .video-thumb { width: 110px; height: 65px; object-fit: cover; cursor: pointer; border: 2px solid #00ff66; border-radius: 8px; opacity: 0.5; flex-shrink: 0; transition: 0.3s; }
 
-        /* EFECTO LATE (PULSAR) */
         .active-thumb { 
-            opacity: 1; 
-            border-color: #ffdf00; 
-            transform: scale(1.1); 
-            animation: pulse-neon 1.5s infinite ease-in-out;
-            z-index: 5;
+            opacity: 1; border-color: #ffdf00; transform: scale(1.1); 
+            animation: pulse-neon 1.5s infinite ease-in-out; z-index: 5;
         }
 
         @keyframes pulse-neon {
@@ -204,12 +195,18 @@
         setInterval(spawnEffect, 400);
 
         let player;
-        const videos = ["bjdwES7m58M", "ilHPmUKCypg", "MeJkPosqXPY", "_9g2axX99wA", "NQHHjipTX2w", "v4paDVXN6ZE"];
+        const videos = ["bjdwES7m58M", "ilHPmUKCypg", "MeJkPosqXPY", "_9g2axX99wA", "NQHHjipTX2w", "v4paDV/N6ZE"];
         let currentIdx = 0;
+
         function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', { height: '100%', width: '100%', videoId: videos[0], events: { 'onStateChange': (e) => { if(e.data === 0) moveMusic(1); } } });
+            player = new YT.Player('player', { 
+                height: '100%', width: '100%', videoId: videos[0],
+                playerVars: { 'autoplay': 1, 'mute': 0, 'controls': 1, 'rel': 0 },
+                events: { 'onReady': (e) => e.target.playVideo(), 'onStateChange': (e) => { if(e.data === 0) moveMusic(1); } } 
+            });
             updateUI();
         }
+
         function playThis(idx) { currentIdx = idx; player.loadVideoById(videos[currentIdx]); updateUI(); }
         function moveMusic(dir) { currentIdx = (currentIdx + dir + videos.length) % videos.length; playThis(currentIdx); }
         function updateUI() {
