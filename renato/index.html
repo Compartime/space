@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renato Fereira | Brasil Neon Elite</title>
+    <title>Renato Fereira | Brasil </title>
+    <LINK REL="SHORTCUT ICON" href="https://xatimg.com/image/5C3bY3sbQOOG.png">
     <style>
         body {
             margin: 0; padding: 0; 
@@ -13,18 +14,23 @@
             height: 100vh; overflow: hidden; position: relative;
         }
 
+        /* CAPA MÁGICA EXTERIOR */
         #magic-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        .magic-effect { position: absolute; color: #ffdf00; text-shadow: 0 0 10px #ffdf00; animation: fly linear forwards; }
-        @keyframes fly {
+        
+        .magic-note { 
+            position: absolute; color: #ffdf00; text-shadow: 0 0 10px #ffdf00; 
+            animation: flyUp linear forwards; z-index: 1; pointer-events: none;
+        }
+
+        @keyframes flyUp {
             0% { transform: translateY(0) scale(0.5); opacity: 0; }
             20% { opacity: 0.8; }
             100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
         }
 
-        /* CAJA BAJADA 120PX ADICIONALES (Total 180px) */
+        /* CUADRO PRINCIPAL (180px de margen superior) */
         .neon-border-box {
-            position: relative; 
-            margin-top: 180px !important; 
+            position: relative; margin-top: 180px !important; 
             width: 95%; max-width: 850px; height: 720px !important;
             padding: 4px; background: #000; border-radius: 40px;
             overflow: hidden; z-index: 10;
@@ -46,13 +52,7 @@
             padding: 20px; box-sizing: border-box; overflow: hidden;
         }
 
-        .inner-magic { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .note-inner { position: absolute; color: #ffdf00; text-shadow: 0 0 8px #ffdf00; bottom: -50px; animation: floatUp linear forwards; }
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(0.5); opacity: 0; }
-            20% { opacity: 0.6; }
-            100% { transform: translateY(-700px) scale(1); opacity: 0; }
-        }
+        #inner-magic { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
 
         .nav-menu { display: flex; gap: 15px; margin-bottom: 20px; z-index: 20; position: relative; }
         .nav-item { padding: 8px 25px; border: 1px solid #ffdf00; border-radius: 30px; color: #ffdf00; cursor: pointer; font-weight: bold; transition: 0.3s; }
@@ -69,14 +69,10 @@
         }
         .video-container { position: relative; width: 560px; height: 300px; border-radius: 15px; overflow: hidden; background: #000; z-index: 3; }
 
-        /* VISOR DE 5 MINIATURAS COMPLETAS */
         .thumb-wrapper { display: flex; align-items: center; gap: 10px; margin-top: 25px; width: 100%; justify-content: center; z-index: 20; position: relative; }
         .video-thumbnails-viewport { 
-            overflow: hidden; 
-            width: 610px; 
-            padding: 15px 10px;
-            display: flex;
-            justify-content: flex-start;
+            overflow: hidden; width: 610px; padding: 15px 10px;
+            display: flex; justify-content: flex-start;
         }
         .video-thumbnails-carousel { display: flex; gap: 15px; transition: transform 0.5s ease-in-out; align-items: center; }
         .video-thumb { width: 100px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid #00ff66; border-radius: 8px; opacity: 0.4; transition: 0.4s; flex-shrink: 0; }
@@ -109,7 +105,7 @@
 
     <div class="neon-border-box">
         <div class="glass-panel">
-            <div class="inner-magic" id="inner-magic"></div>
+            <div id="inner-magic"></div>
 
             <nav class="nav-menu">
                 <div class="nav-item active" onclick="showSection('inicio', this)">INICIO</div>
@@ -163,35 +159,37 @@
     <script>
         function updateClock() {
             const now = new Date();
-            document.getElementById('footer-reloj').innerHTML = `Brasil Elite | ${now.toLocaleDateString('pt-BR')} - ${now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})}`;
+            const horas = now.getHours();
+            let saudacao = "";
+            
+            if (horas >= 5 && horas < 12) saudacao = "Bom Dia 🌞";
+            else if (horas >= 12 && horas < 18) saudacao = "Boa Tarde 🌤️";
+            else saudacao = "Boa Noite 🌙";
+
+            const opciones = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            const fechaEstilo = now.toLocaleDateString('pt-BR', opciones);
+            const horaEstilo = now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+
+            document.getElementById('footer-reloj').innerHTML = `${saudacao} | ${fechaEstilo} - ${horaEstilo}`;
         }
         setInterval(updateClock, 1000); updateClock();
 
-        function spawnOuter() {
-            const layer = document.getElementById('magic-layer');
+        function createNote(containerId) {
+            const container = document.getElementById(containerId);
+            if(!container) return;
             const span = document.createElement('span');
-            span.className = 'magic-effect';
+            span.className = 'magic-note';
             span.textContent = ['♫', '★', '✨', '♪'][Math.floor(Math.random()*4)];
-            span.style.left = Math.random() * 100 + 'vw';
-            span.style.top = '105vh';
+            span.style.left = Math.random() * 100 + '%';
+            span.style.top = '105%';
             span.style.fontSize = Math.random() * 20 + 15 + 'px';
             span.style.animationDuration = Math.random() * 3 + 4 + 's';
-            layer.appendChild(span);
-            setTimeout(() => span.remove(), 7000);
-        }
-        setInterval(spawnOuter, 500);
-
-        function spawnInner() {
-            const container = document.getElementById('inner-magic');
-            const span = document.createElement('span');
-            span.className = 'note-inner';
-            span.textContent = '♪';
-            span.style.left = Math.random() * 95 + '%';
-            span.style.fontSize = '12px';
             container.appendChild(span);
-            setTimeout(() => span.remove(), 5000);
+            setTimeout(() => span.remove(), 6000);
         }
-        setInterval(spawnInner, 400);
+
+        setInterval(() => createNote('magic-layer'), 500);
+        setInterval(() => createNote('inner-magic'), 600);
 
         let player;
         const videos = ["bjdwES7m58M", "ilHPmUKCypg", "MeJkPosqXPY", "_9g2axX99wA", "NQHHjipTX2w", "v4paDVXN6ZE"];
