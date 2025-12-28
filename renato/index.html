@@ -14,8 +14,10 @@
             height: 100vh; overflow: hidden; position: relative;
         }
 
-        /* NOTAS MÁGICAS */
-        #magic-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        /* CAPAS DE NOTAS MÁGICAS */
+        #magic-layer, #inner-magic { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        #inner-magic { position: absolute; z-index: 1; } /* Notas dentro del cuadro */
+
         .magic-note { 
             position: absolute; color: #ffdf00; text-shadow: 0 0 10px #ffdf00; 
             animation: flyUp linear forwards; z-index: 1; pointer-events: none;
@@ -49,8 +51,6 @@
             padding: 20px; box-sizing: border-box; overflow: hidden;
         }
 
-        #inner-magic { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-
         .nav-menu { display: flex; gap: 15px; margin-bottom: 20px; z-index: 20; position: relative; }
         .nav-item { padding: 8px 25px; border: 1px solid #ffdf00; border-radius: 30px; color: #ffdf00; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .nav-item.active { background: #ffdf00; color: #000; box-shadow: 0 0 15px #ffdf00; }
@@ -58,38 +58,24 @@
         .section { display: none; width: 100%; flex-direction: column; align-items: center; padding-top: 10px; z-index: 15; position: relative; }
         .section.active { display: flex; animation: fadeIn 0.5s; }
 
-        /* --- ARREGLO DEFINITIVO DEL VIDEO --- */
+        /* REPRODUCTOR CON EFECTO SERPIENTE */
         .snake-player {
-            position: relative; width: 580px; background: #000; 
-            border-radius: 20px; overflow: hidden; padding: 4px;
+            position: relative; width: 560px; height: 315px; padding: 4px; 
+            background: #000; border-radius: 20px; overflow: hidden; 
+            display: flex; justify-content: center; align-items: center;
             box-shadow: 0 0 15px #ffdf00; border: 1px solid #ffdf00;
         }
-        /* Contenedor con relación de aspecto 16:9 exacta */
-        .video-container { 
-            position: relative; 
-            width: 100%; 
-            padding-bottom: 56.25%; /* Esto es 16:9 */
-            height: 0; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            background: #000;
-        }
-        /* El iframe ahora se ajusta al contenedor sin zoom */
-        .video-container iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-        }
+        .video-container { position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; background: #000; z-index: 3; }
+        #player { width: 100%; height: 100%; border: none; }
         
-        /* MINIATURAS MÚSICA */
-        .thumb-wrapper { display: flex; align-items: center; gap: 10px; margin-top: 20px; width: 100%; justify-content: center; z-index: 20; position: relative; }
+        /* CARRUSEL MINIATURAS */
+        .thumb-wrapper { display: flex; align-items: center; gap: 10px; margin-top: 25px; width: 100%; justify-content: center; z-index: 20; position: relative; }
         .video-thumbnails-viewport { overflow: hidden; width: 610px; padding: 15px 5px; display: flex; justify-content: flex-start; }
         .video-thumbnails-carousel { display: flex; gap: 15px; transition: transform 0.5s ease-in-out; align-items: center; padding-left: 5px; }
         .video-thumb { width: 100px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid #00ff66; border-radius: 8px; opacity: 0.4; transition: 0.4s; flex-shrink: 0; }
         .active-thumb { opacity: 1; border-color: #ffdf00; transform: scale(1.15); z-index: 5; animation: pulse-neon 1.5s infinite ease-in-out; }
 
-        /* FOTOS */
+        /* LIBRO DE FOTOS */
         #fotos { width: 100%; height: 100%; justify-content: center; }
         .book-container { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; height: 380px; }
         .book { position: relative; width: 500px; height: 320px; perspective: 2000px; z-index: 10; }
@@ -117,9 +103,7 @@
 
     <div class="neon-border-box">
         <div class="glass-panel">
-            <div id="inner-magic"></div>
-
-            <nav class="nav-menu">
+            <div id="inner-magic"></div> <nav class="nav-menu">
                 <div class="nav-item active" onclick="showSection('inicio', this)">INICIO</div>
                 <div class="nav-item" onclick="showSection('musica', this)">MUSICA</div>
                 <div class="nav-item" onclick="showSection('fotos', this)">FOTOS</div>
@@ -132,9 +116,7 @@
 
             <div id="musica" class="section">
                 <div class="snake-player">
-                    <div class="video-container">
-                        <div id="player"></div>
-                    </div>
+                    <div class="video-container"><div id="player"></div></div>
                 </div>
                 <div class="thumb-wrapper">
                     <div style="font-size:3rem; color:#ffdf00; cursor:pointer;" onclick="moveMusic(-1)">&#10094;</div>
@@ -199,6 +181,7 @@
             container.appendChild(span);
             setTimeout(() => span.remove(), 6000);
         }
+        // Restaurado: Generación de notas en ambas capas
         setInterval(() => createNote('magic-layer'), 500);
         setInterval(() => createNote('inner-magic'), 600);
 
@@ -209,7 +192,7 @@
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', { 
                 videoId: videos[0],
-                playerVars: { 'autoplay': 1, 'controls': 1, 'modestbranding': 1, 'rel': 0 },
+                playerVars: { 'autoplay': 1, 'controls': 1, 'rel': 0 },
                 events: { 'onStateChange': (e) => { if(e.data === 0) moveMusic(1); } } 
             });
             updateUI();
@@ -240,7 +223,6 @@
             if(curPage < pages.length) { pages[curPage].classList.add('page-flip'); curPage++; } 
             else { pages.forEach(p => p.classList.remove('page-flip')); curPage = 0; }
         }
-
         function prevPage() { if(curPage > 0) { curPage--; pages[curPage].classList.remove('page-flip'); } }
         function stopAutoFlip() { clearInterval(autoFlipInterval); }
     </script>
