@@ -14,7 +14,6 @@
             height: 100vh; overflow: hidden; position: relative;
         }
 
-        /* CAPAS DE NOTAS MÁGICAS */
         #magic-layer, #inner-magic { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         #inner-magic { position: absolute; z-index: 1; }
 
@@ -28,7 +27,6 @@
             100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
         }
 
-        /* CUADRO PRINCIPAL - SOLO SERPIENTE NEÓN */
         .neon-border-box {
             position: relative; margin-top: 150px !important; 
             width: 95%; max-width: 850px; height: 760px !important;
@@ -54,25 +52,27 @@
         .nav-item { padding: 8px 25px; border: 1px solid #ffdf00; border-radius: 30px; color: #ffdf00; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .nav-item.active { background: #ffdf00; color: #000; box-shadow: 0 0 15px #ffdf00; }
 
-        .section { display: none; width: 100%; flex-direction: column; align-items: center; padding-top: 10px; z-index: 15; position: relative; }
+        .section { 
+            display: none; 
+            width: 100%; 
+            height: 100%;
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 15; 
+            position: relative; 
+            text-align: center;
+        }
         .section.active { display: flex; animation: fadeIn 0.5s; }
 
-        /* IMAGEN CON LATIDO NEÓN */
-        .img-neon-pulse {
-            margin-top: 20px;
-            max-width: 100%;
-            border-radius: 15px;
-            border: 2px solid #00ff66;
-            animation: neonHeartbeat 2s infinite ease-in-out;
+        /* IMAGEN LIMPIA Y CENTRADA */
+        .img-inicio-limpia {
+            width: 450px;
+            height: auto;
+            display: block;
+            margin-top: 10px;
         }
 
-        @keyframes neonHeartbeat {
-            0% { box-shadow: 0 0 5px #00ff66; border-color: #00ff66; transform: scale(1); }
-            50% { box-shadow: 0 0 25px #ffdf00; border-color: #ffdf00; transform: scale(1.03); }
-            100% { box-shadow: 0 0 5px #00ff66; border-color: #00ff66; transform: scale(1); }
-        }
-
-        /* REPRODUCTOR LIMPIO SIN EFECTOS */
         .snake-player {
             position: relative; width: 560px; height: 315px; 
             background: #000; border-radius: 20px; overflow: hidden; 
@@ -101,7 +101,7 @@
             display: flex; justify-content: center; align-items: center; gap: 30px;
         }
 
-        .name-container { font-size: 2.2rem; color: #00ff66; font-weight: 900; margin-top: 5px; display: flex; align-items: center; gap: 15px; text-shadow: 0 0 10px #00ff66; }
+        .name-container { font-size: 2.2rem; color: #00ff66; font-weight: 900; margin-top: 5px; display: flex; align-items: center; justify-content: center; gap: 15px; text-shadow: 0 0 10px #00ff66; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes pulse-neon { 0%, 100% { box-shadow: 0 0 8px #ffdf00; } 50% { box-shadow: 0 0 20px #00ff66; } }
     </style>
@@ -120,9 +120,12 @@
             </nav>
 
             <div id="inicio" class="section active">
-                <div class="name-container">RENATO FERREIRA <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png" width="45"></div>
-                <p style="font-size: 1.2rem; color: #ffdf00;">Elite Space | Bem-vindo</p>
-                <img src="https://xatimg.com/image/hpUvQxhMncqg.png" class="img-neon-pulse">
+                <div class="name-container">
+                    RENATO FERREIRA 
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png" width="45">
+                </div>
+                <p style="font-size: 1.2rem; color: #ffdf00; margin: 5px 0;">Elite Space | Bem-vindo</p>
+                <img class="img-inicio-limpia" src="https://xatimg.com/image/HQCr2f2AkqR6.png"/>
             </div>
 
             <div id="musica" class="section">
@@ -184,7 +187,7 @@
             if(!container) return;
             const span = document.createElement('span');
             span.className = 'magic-note';
-            span.textContent = ['♫', '★', '', '♪'][Math.floor(Math.random()*4)];
+            span.textContent = ['♫', '★', '✨', '♪'][Math.floor(Math.random()*4)];
             span.style.left = Math.random() * 100 + '%';
             span.style.top = '105%';
             span.style.fontSize = Math.random() * 20 + 15 + 'px';
