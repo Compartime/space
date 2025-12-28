@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renato Fereira | Brasil </title>
+ <title>Renato Fereira | Brasil </title>
     <LINK REL="SHORTCUT ICON" href="https://xatimg.com/image/5C3bY3sbQOOG.png">
     <style>
         body {
@@ -14,21 +14,19 @@
             height: 100vh; overflow: hidden; position: relative;
         }
 
-        /* CAPA MÁGICA EXTERIOR */
+        /* EFECTO NOTAS MÁGICAS */
         #magic-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        
         .magic-note { 
             position: absolute; color: #ffdf00; text-shadow: 0 0 10px #ffdf00; 
             animation: flyUp linear forwards; z-index: 1; pointer-events: none;
         }
-
         @keyframes flyUp {
             0% { transform: translateY(0) scale(0.5); opacity: 0; }
             20% { opacity: 0.8; }
             100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
         }
 
-        /* CUADRO PRINCIPAL */
+        /* CUADRO PRINCIPAL (180px de margen superior) */
         .neon-border-box {
             position: relative; margin-top: 180px !important; 
             width: 95%; max-width: 850px; height: 720px !important;
@@ -42,7 +40,6 @@
             background: conic-gradient(transparent, transparent, transparent, #00ff66);
             top: -75%; left: -75%; animation: rotateNeon 3s linear infinite; z-index: 1;
         }
-
         @keyframes rotateNeon { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         .glass-panel {
@@ -54,30 +51,23 @@
 
         #inner-magic { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
 
-        /* NAVEGACIÓN */
         .nav-menu { display: flex; gap: 15px; margin-bottom: 20px; z-index: 20; position: relative; }
         .nav-item { padding: 8px 25px; border: 1px solid #ffdf00; border-radius: 30px; color: #ffdf00; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .nav-item.active { background: #ffdf00; color: #000; box-shadow: 0 0 15px #ffdf00; }
 
-        /* SECCIONES */
         .section { display: none; width: 100%; flex-direction: column; align-items: center; padding-top: 20px; z-index: 15; position: relative; }
         .section.active { display: flex; animation: fadeIn 0.5s; }
 
-        /* PLAYER */
+        /* PLAYER & MINIATURAS */
         .snake-player {
-            position: relative; width: 568px; height: 308px;
-            padding: 4px; background: #000; border-radius: 20px; overflow: hidden;
-            display: flex; justify-content: center; align-items: center;
+            position: relative; width: 568px; height: 308px; padding: 4px; background: #000; 
+            border-radius: 20px; overflow: hidden; display: flex; justify-content: center; align-items: center;
             box-shadow: 0 0 15px #ffdf00; border: 1px solid #ffdf00;
         }
         .video-container { position: relative; width: 560px; height: 300px; border-radius: 15px; overflow: hidden; background: #000; z-index: 3; }
-
-        /* MINIATURAS */
+        
         .thumb-wrapper { display: flex; align-items: center; gap: 10px; margin-top: 25px; width: 100%; justify-content: center; z-index: 20; position: relative; }
-        .video-thumbnails-viewport { 
-            overflow: hidden; width: 610px; padding: 15px 10px;
-            display: flex; justify-content: flex-start;
-        }
+        .video-thumbnails-viewport { overflow: hidden; width: 610px; padding: 15px 10px; display: flex; justify-content: flex-start; }
         .video-thumbnails-carousel { display: flex; gap: 15px; transition: transform 0.5s ease-in-out; align-items: center; }
         .video-thumb { width: 100px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid #00ff66; border-radius: 8px; opacity: 0.4; transition: 0.4s; flex-shrink: 0; }
         .active-thumb { opacity: 1; border-color: #ffdf00; transform: scale(1.15); animation: pulse-neon 1.5s infinite ease-in-out; z-index: 5; }
@@ -88,26 +78,12 @@
         .page img { width: 100%; height: 100%; object-fit: cover; }
         .page-flip { transform: rotateY(-180deg); }
 
-        /* --- CONTADOR DE VISITAS HERMOSO --- */
-        .visitor-counter {
-            background: rgba(0, 51, 17, 0.8);
-            border: 1px solid #00ff66;
-            padding: 5px 20px;
-            border-radius: 15px;
-            margin-bottom: 10px;
-            font-family: 'Courier New', Courier, monospace;
-            box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
-            display: flex; align-items: center; gap: 10px;
-        }
-        .visitor-label { color: #ffdf00; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
-        .visitor-number { color: #00ff66; font-size: 1.2rem; font-weight: bold; text-shadow: 0 0 8px #00ff66; }
-
-        /* FOOTER */
+        /* FOOTER DINÁMICO */
         .footer-tempo { 
-            position: absolute; bottom: 0; width: 100%; text-align: center; padding: 12px 0; 
+            position: absolute; bottom: 0; width: 100%; padding: 12px 0; 
             color: #ffdf00; background: rgba(0,0,0,0.9); font-weight: bold; border-top: 2px solid #ffdf00; 
             z-index: 20; border-bottom-left-radius: 36px; border-bottom-right-radius: 36px;
-            display: flex; flex-direction: column; align-items: center;
+            display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;
         }
 
         .name-container { font-size: 2.2rem; color: #00ff66; font-weight: 900; margin-top: 10px; display: flex; align-items: center; gap: 15px; text-shadow: 0 0 10px #00ff66; }
@@ -169,18 +145,17 @@
             </div>
 
             <div class="footer-tempo">
-                <div class="visitor-counter">
-                    <span class="visitor-label">Visitantes:</span>
-                    <span class="visitor-number" id="v-count">000000</span>
-                </div>
                 <div id="footer-reloj">Cargando...</div>
+                
+                <div id="sfch1r4ml936pcheabcsj89zqxkrjnkwj3q"></div>
+                <script type="text/javascript" src="https://counter1.optistats.ovh/private/counter.js?c=h1r4ml936pcheabcsj89zqxkrjnkwj3q&down=async" async></script>
             </div>
         </div>
     </div>
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // Lógica del Reloj con Saludo y Fecha Completa
+        // Reloj con formato: Bom dia | Domingo, 28 de Dezembro de 2025 - 00:00
         function updateClock() {
             const now = new Date();
             const horas = now.getHours();
@@ -197,16 +172,7 @@
         }
         setInterval(updateClock, 1000); updateClock();
 
-        // Lógica del Contador (Simulada para que siempre suba al recargar)
-        function updateCounter() {
-            let count = localStorage.getItem('visitas') || 15430;
-            count = parseInt(count) + 1;
-            localStorage.setItem('visitas', count);
-            document.getElementById('v-count').innerText = count.toString().padStart(6, '0');
-        }
-        updateCounter();
-
-        // Notas Mágicas
+        // Notas Mágicas (Afuera y Adentro)
         function createNote(containerId) {
             const container = document.getElementById(containerId);
             if(!container) return;
@@ -223,6 +189,7 @@
         setInterval(() => createNote('magic-layer'), 500);
         setInterval(() => createNote('inner-magic'), 600);
 
+        // Lógica de Video
         let player;
         const videos = ["bjdwES7m58M", "ilHPmUKCypg", "MeJkPosqXPY", "_9g2axX99wA", "NQHHjipTX2w", "v4paDVXN6ZE"];
         let currentIdx = 0;
@@ -247,15 +214,18 @@
             carousel.style.transform = `translateX(-${move}px)`;
         }
 
-        let curPage = 0;
-        const pages = document.querySelectorAll('.page');
-        function nextPage() { if(curPage < pages.length) { pages[curPage].classList.add('page-flip'); curPage++; } }
-        function prevPage() { if(curPage > 0) { curPage--; pages[curPage].classList.remove('page-flip'); } }
+        // Navegación de Secciones
         function showSection(id, btn) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             document.getElementById(id).classList.add('active'); btn.classList.add('active');
         }
+
+        // Álbum de Fotos
+        let curPage = 0;
+        const pages = document.querySelectorAll('.page');
+        function nextPage() { if(curPage < pages.length) { pages[curPage].classList.add('page-flip'); curPage++; } }
+        function prevPage() { if(curPage > 0) { curPage--; pages[curPage].classList.remove('page-flip'); } }
     </script>
 </body>
 </html>
