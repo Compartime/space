@@ -88,7 +88,7 @@
         .active-thumb { opacity: 1; border-color: #ffdf00; transform: scale(1.15); z-index: 5; animation: pulse-neon 1.5s infinite ease-in-out; }
 
         .book-container { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; height: 380px; }
-        .book { position: relative; width: 500px; height: 320px; perspective: 2000px; z-index: 10; }
+        .book { position: relative; width: 600px; height: 350px; perspective: 2000px; z-index: 10; }
         .page { position: absolute; width: 100%; height: 100%; transform-origin: left; transition: 1.2s; backface-visibility: hidden; border: 2px solid #ffdf00; border-radius: 10px; overflow: hidden; }
         .page img { width: 100%; height: 100%; object-fit: cover; }
         .page-flip { transform: rotateY(-180deg); }
@@ -152,11 +152,13 @@
                 <div class="book-container">
                     <div class="book-arrow" onclick="prevPage(); stopAutoFlip();">&#10094;</div>
                     <div class="book">
-                        <div class="page" style="z-index:6;"><img src="https://xatimg.com/image/hpUvQxhMncqg.png"></div>
+					    <div class="page" style="z-index:8;"><img src="https://xatimg.com/image/mhnMyAFwUH2K.png"></div>
+                        <div class="page" style="z-index:7;"><img src="https://xatimg.com/image/7D3tNoOyzg0l.png"></div>
+                        <div class="page" style="z-index:6;"><img src="https://xatimg.com/image/p5ELiRGUvLb5.png"></div>
                         <div class="page" style="z-index:5;"><img src="https://xatimg.com/image/QCxjLR2yb7Ze.png"></div>
-                        <div class="page" style="z-index:4;"><img src="https://xatimg.com/image/1sT0QnrKTbz6.png"></div>
-                        <div class="page" style="z-index:3;"><img src="https://xatimg.com/image/uG8harh6GduQ.png"></div>
-                        <div class="page" style="z-index:2;"><img src="https://xatimg.com/image/p5ELiRGUvLb5.png"></div>
+                        <div class="page" style="z-index:4;"><img src="https://xatimg.com/image/Ay4z0fQsm1IN.png"></div>
+                        <div class="page" style="z-index:3;"><img src="https://xatimg.com/image/kx9gXBugtbXN.png"></div>
+                        <div class="page" style="z-index:2;"><img src="https://xatimg.com/image/8nqoOcT3SWVT.png"></div>
                         <div class="page" style="z-index:1;"><img src="https://xatimg.com/image/hpUvQxhMncqg.png"></div>
                     </div>
                     <div class="book-arrow" onclick="nextPage(); stopAutoFlip();">&#10095;</div>
